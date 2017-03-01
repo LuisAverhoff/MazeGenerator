@@ -3,6 +3,9 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+#include <vector>
+#include <fstream>
+#include <iterator>
 
 int getInt(std::string prompt);
 
@@ -16,7 +19,19 @@ int main()
 
 	Maze maze(totalRows, totalColumns);
 	maze.generateMaze();
-	maze.displayMaze();
+
+	std::vector<std::string> contentForFile(totalRows * totalColumns);
+
+	maze.displayMaze(contentForFile);
+	std::cout << std::endl;
+
+	std::string filePath;
+
+	std::cout << "Where in your computer would you like to save this maze? ";
+	std::cin >> filePath;
+
+	std::ofstream outputFile(filePath, std::ios::out);
+	std::copy(contentForFile.begin(), contentForFile.end(), std::ostream_iterator<std::string>(outputFile));
 
 	system("pause");
 

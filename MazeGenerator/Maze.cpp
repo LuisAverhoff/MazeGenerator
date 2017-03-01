@@ -24,7 +24,7 @@ Maze::Maze(int totalRows, int totalColmuns): ROWS(totalRows), COLUMNS(totalColmu
 	}
 }
 
-void Maze::displayMaze() const
+void Maze::displayMaze(std::vector<std::string> &contentForFile) const
 {
 	for (int i = 0; i < ROWS; i++)
 	{
@@ -32,32 +32,44 @@ void Maze::displayMaze() const
 		{
 			if (cells[i * COLUMNS + j].walls[0])
 			{
+				contentForFile.push_back("+---");
 				std::cout << "+---";
 			}
 			else
+			{
+				contentForFile.push_back("+   ");
 				std::cout << "+   ";
+			}
 		}
-			
+		
+		contentForFile.push_back("+\n");
 		std::cout << "+" << std::endl;
 
 		for (int j = 0; j < COLUMNS; j++)
 		{
 			if (cells[i * COLUMNS + j].walls[3])
 			{
+				contentForFile.push_back("|   ");
 				std::cout << "|   ";
 			}
 			else
+			{
+				contentForFile.push_back("    ");
 				std::cout << "    ";
+			}
 		}
 
+		contentForFile.push_back("|\n");
 		std::cout << "|" << std::endl;
 	}
 
 	for (int i = 0; i < COLUMNS; i++)
 	{
+		contentForFile.push_back("+---");
 		std::cout << "+---";
 	}
 	
+	contentForFile.push_back("+\n");
 	std::cout << "+" << std::endl;
 }
 

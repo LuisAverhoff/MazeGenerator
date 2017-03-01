@@ -6,7 +6,7 @@ class Maze
 {
 	public:
 		Maze(int totalRows, int totalColumns);
-		void displayMaze() const;
+		void displayMaze(std::vector<std::string> &contentForFile) const;
 		void generateMaze();
 		void generateMaze(int row, int column);
 		int getNeighbourCell(int row, int column);
